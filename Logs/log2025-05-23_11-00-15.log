@@ -1,0 +1,38 @@
+2025-05-23 11:00:15,698 - INFO - Started validating format of the list of URLs
+2025-05-23 11:00:15,699 - INFO - Started parsing the URL
+2025-05-23 11:00:15,699 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,699 - INFO - Started parsing the URL
+2025-05-23 11:00:15,699 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,699 - INFO - Started parsing the URL
+2025-05-23 11:00:15,699 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,699 - INFO - Started parsing the URL
+2025-05-23 11:00:15,699 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,699 - INFO - Started parsing the URL
+2025-05-23 11:00:15,703 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,703 - INFO - Started parsing the URL
+2025-05-23 11:00:15,703 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,703 - INFO - Started parsing the URL
+2025-05-23 11:00:15,703 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,703 - INFO - Started parsing the URL
+2025-05-23 11:00:15,703 - INFO - Started parsing the URL
+2025-05-23 11:00:15,704 - INFO - Given URL is in Valid format
+2025-05-23 11:00:15,704 - INFO - Started validating format of the list of URLs --> Completed
+2025-05-23 11:00:15,704 - INFO - Started checking all the URLs are reachable or not
+2025-05-23 11:00:15,704 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,704 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,704 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,704 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,704 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,705 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,705 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,705 - INFO - Checking whether the URL is reachable or not
+2025-05-23 11:00:15,963 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/2 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,963 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/6 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,964 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/3 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,964 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/4 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,964 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/5 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,964 - ERROR - Error while checking reachability: https://jsonplaceholder.typicode.com/posts/1 - Cannot connect to host jsonplaceholder.typicode.com:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,964 - ERROR - Error while checking reachability: https://invalid.url.fake - Cannot connect to host invalid.url.fake:443 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,976 - ERROR - Error while checking reachability: http://example.com - Cannot connect to host example.com:80 ssl:default [getaddrinfo failed]
+2025-05-23 11:00:15,978 - INFO - Started checking all the URLs are reachable --> Completed
+2025-05-23 11:00:15,981 - INFO - Fetch all valid URLs in parallel with max concurrency = 5.

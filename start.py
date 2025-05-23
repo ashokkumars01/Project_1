@@ -1,14 +1,18 @@
-from Project.Validation.url_validation import is_url_reachable, validate_urls, is_valid_format
-from Project.Logger import logging
-import asyncio
-import aiohttp
-from yarl import URL
-import time
-from Project.Parallel_Requests.parallel_requests import fetch_all_json, fetch_with_retry
+from Project.Validation.url_validation import is_url_reachable, validate_urls, is_valid_format  # URL validation functions
+from Project.Logger import logging  # Custom logging configuration
+import asyncio  # Async I/O framework
+import aiohttp  # HTTP client for async requests
+from yarl import URL  # URL parser and validator
+import time  # Used for tracking execution time
+from Project.Parallel_Requests.parallel_requests import fetch_all_json, fetch_with_retry  # Async fetch functions
 
+
+# -------------------------------------------------------
+# MAIN FUNCTION: Orchestrates the full pipeline
+# -------------------------------------------------------
 def main():
     """
-    Main function to coordinate validation, fetching, and logging.
+    Main function to coordinate URL validation, data fetching with retry and parallelism, and logging.
     """
     urls = [
         "https://jsonplaceholder.typicode.com/posts/1",
@@ -17,39 +21,43 @@ def main():
         "https://jsonplaceholder.typicode.com/posts/4",
         "https://jsonplaceholder.typicode.com/posts/5",
         "https://jsonplaceholder.typicode.com/posts/6",
-        "http://example.com",  # Not JSON
-        "ftp://invalid.com",   # Invalid scheme
-        "https://invalid.url.fake"  # Unreachable
+        "http://example.com",  # Valid format but likely not a JSON response
+        "ftp://invalid.com",   # Invalid scheme (not http or https)
+        "https://invalid.url.fake"  # Invalid or unreachable domain
     ]
-    # urls = [
-    # "https://www.google.com",
-    # "https://www.github.com",
-    # "https://www.python.org",
-    # "https://www.wikipedia.org",
-    # "http://example.com",  # Not JSON
-    # "ftp://invalid.com",   # Invalid scheme
-    # "https://invalid.url.fake"  # Unreachable
-# ]
+    
 
-
+    # ---------------------------------------------------
+    # Record the start time to calculate total execution time
+    # ---------------------------------------------------
     start_time = time.time()
 
-    # Step 1: Validate URLs
+    # ---------------------------------------------------
+    # Step 1: Validate the URL format and reachability
+    # Uses is_valid_format() and is_url_reachable()
+    # ---------------------------------------------------
     print("\n[STEP 1] Validating URLs...")
-    valid_urls = asyncio.run(validate_urls(urls))
+    valid_urls = asyncio.run(validate_urls(urls))  # Filter valid and reachable URLs
     print(f"\n[INFO] Valid & Reachable URLs: {len(valid_urls)}")
 
-    # Step 2–6: Fetch data with retry and parallelism
+    # ---------------------------------------------------
+    # Step 2: Fetch JSON responses from all valid URLs
+    # Uses parallelism with concurrency control and retries
+    # ---------------------------------------------------
     print("\n[STEP 2] Fetching JSON responses...")
-    json_results = asyncio.run(fetch_all_json(valid_urls))
+    json_results = asyncio.run(fetch_all_json(valid_urls))  # Fetch all responses in parallel
 
-    # Step 7: Print Results Summary
+    # ---------------------------------------------------
+    # Step 3: Print a summary of fetch results (success/failure)
+    # ---------------------------------------------------
     print("\n[RESULTS]")
     for url, result in json_results.items():
         status = "Success" if result else "Failed"
         print(f"{url}: {status}")
         
-    # Step 8: Print Parsed JSON Results
+    # ---------------------------------------------------
+    # Step 4: Print the actual JSON data from each successful request
+    # ---------------------------------------------------
     print("\n[PARSED JSON RESULTS]")
     for url, json_data in json_results.items():
         if json_data is not None:
@@ -57,9 +65,12 @@ def main():
         else:
             print(f"{url}: Failed or not JSON\n")
 
-    # Step 9: Log time
+    # ---------------------------------------------------
+    # Step 5: Print total execution time of the pipeline
+    # ---------------------------------------------------
     total_time = time.time() - start_time
     print(f"\n[TIME TAKEN] {total_time:.2f} seconds")
     
+
 if __name__ == "__main__":
     main()
