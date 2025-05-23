@@ -13,7 +13,7 @@ async def fetch_with_retry(
     session: aiohttp.ClientSession,  # Reusable session for efficient requests
     url: str,                        # URL to fetch
     semaphore: asyncio.Semaphore,    # Controls max concurrent requests
-    retries: RETRY                   # Number of retry attempts (default 3)
+    retries                          # Number of retry attempts (default 3)
 ) -> Dict[str, Optional[dict]]:
     """
     Sends GET request with retry (max 3) and exponential backoff.
@@ -23,10 +23,10 @@ async def fetch_with_retry(
     
     # Acquire the semaphore before making request (limits concurrency)
     async with semaphore:
+        
         for attempt in range(1, retries + 1):
             try:
                 logging.info("Sends GET request with retry (max 3) and exponential backoff.")
-                
                 # Make GET request with 10-second timeout
                 async with session.get(url, timeout=10) as response:
                     if response.status == 200:
@@ -77,7 +77,7 @@ async def fetch_all_json(urls: List[str]) -> Dict[str, Optional[dict]]:
         # Create and use a single aiohttp session for all requests
         async with aiohttp.ClientSession() as session:
             # Prepare list of coroutine tasks to fetch each URL
-            tasks = [fetch_with_retry(session, url, semaphore) for url in urls]
+            tasks = [fetch_with_retry(session, url, semaphore, RETRY) for url in urls]
             
             # Execute all tasks concurrently and wait for results
             responses = await asyncio.gather(*tasks)

@@ -34,7 +34,7 @@ async def is_url_reachable(session: aiohttp.ClientSession, url: str) -> bool:
     Sends a HEAD request to check if the URL is reachable (status code < 400).
     """
     try:
-        logging.info("Checking whether the URL is reachable or not")
+        logging.info(f"Checking whether the URL is reachable or not for {url}")
         async with session.head(url, timeout=5) as response:
             return response.status < 400  # True if reachable (status code < 400)
     except Exception as e:
