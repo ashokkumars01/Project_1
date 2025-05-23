@@ -48,8 +48,16 @@ def main():
     for url, result in json_results.items():
         status = "Success" if result else "Failed"
         print(f"{url}: {status}")
+        
+    # Step 8: Print Parsed JSON Results
+    print("\n[PARSED JSON RESULTS]")
+    for url, json_data in json_results.items():
+        if json_data is not None:
+            print(f"{url}:\n{json_data}\n")
+        else:
+            print(f"{url}: Failed or not JSON\n")
 
-    # Step 8: Log time
+    # Step 9: Log time
     total_time = time.time() - start_time
     print(f"\n[TIME TAKEN] {total_time:.2f} seconds")
     

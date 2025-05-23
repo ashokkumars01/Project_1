@@ -11,6 +11,7 @@ def is_valid_format(url: str) -> bool:
     """
     try:
         logging.info("Started parsing the URL")
+
         parsed = URL(url)
         if parsed.scheme in {"http", "https"} and parsed.host is not None:
             logging.info("Given URL is in Valid format")
